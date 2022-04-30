@@ -7,71 +7,7 @@
 #include<algorithm>
 #include<vector>
 
-
-enum class OrderBookType { bid, ask };
-
-class OrderBookEntry // name of the class
-{
-public:
-
-    // create constructor, preferred method
-
-    OrderBookEntry(double _price,
-        double _amount,
-        std::string _timestamp,
-        std::string _product,
-        OrderBookType _ordertype) // constructor with input values from call
-
-        // implementation of the constructor; initialization list
-        :price(_price),
-        amount(_amount),
-        timestamp(_timestamp),
-        product(_product),
-        ordertype{ _ordertype }
-    {
-
-    }
-
-    double price;
-    double amount;
-    std::string timestamp;
-    std::string product;
-    OrderBookType ordertype;
-};
-
-class Box
-{
-private:
-    double length{ 33.0 };
-    double width{ 15.0 };
-    double height{ 3 };
-public:
-    double boxVolume()
-    {
-        return length * width * height;
-    }
-};
-
-class BigBox
-{
-private:
-    double length{ 1.0 };
-    double width{ 1.0 };
-    double height{ 1.0 };
-public:
-    // the constructor; BigBox name must be same as the class BigBox
-    BigBox(double lengthValue, double widthValue, double heightValue)
-    {
-        std::cout << "BigBox constructor has been called!!" << std::endl << std::endl;
-        length = lengthValue;
-        width = widthValue;
-        height = heightValue;
-    }
-    double boxVolume()
-    {
-        return length * width * height;
-    }
-};
+#include "orderBookEntry.h"
 
 
 /* print the user menu */
@@ -238,13 +174,6 @@ int main()
     int min = *min_element(v1.begin(), v1.end());
     std::cout << "Largest value: " << max << std::endl << std::endl;
     std::cout << "Smallest value: " << min << std::endl << std::endl;
-
-    Box myBox;
-    std::cout << "The volumne of my box is: " << myBox.boxVolume() << std::endl << std::endl;
-
-    BigBox myOtherBox{ 3.0, 4.0, 5.0 };
-    double myOtherBoxVolume{ myOtherBox.boxVolume() };
-    std::cout << "The volumne of my other box is: " << myOtherBoxVolume << std::endl << std::endl;
 
     while (true) {
 

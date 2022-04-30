@@ -140,6 +140,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="cryptoTrading.cpp" />
+    <ClCompile Include="orderBookEntry.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="orderBookEntry.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
