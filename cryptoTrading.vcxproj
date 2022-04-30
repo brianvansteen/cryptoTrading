@@ -139,10 +139,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="cryptoTrading.cpp" />
+    <ClCompile Include="cryptoMain.cpp" />
+    <ClCompile Include="MerkelMain.cpp" />
     <ClCompile Include="orderBookEntry.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="MerkelMain.h" />
     <ClInclude Include="orderBookEntry.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

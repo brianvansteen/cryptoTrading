@@ -1,5 +1,6 @@
 // specification file
 
+#pragma once
 #include<string>
 
 enum class OrderBookType { bid, ask };
