@@ -3,12 +3,10 @@
 
 
 #include <iostream>
-//#include "programV1B.cpp"
 #include <string>
 #include<algorithm>
 #include<vector>
 
-//void printHello();
 
 enum class OrderBookType { bid, ask };
 
@@ -30,18 +28,8 @@ public:
         timestamp(_timestamp),
         product(_product),
         ordertype{ _ordertype }
-
-        //OrderBookEntry(double price,
-        //            double amount,
-        //            std::string timestamp,
-        //            std::string product,
-        //            OrderBookType ordertype)
     {
-        //this->price = price;
-        //this->amount = amount;
-        //this->timestamp = timestamp;
-        //this->product = product;
-        //this->ordertype = ordertype;
+
     }
 
     double price;
@@ -190,15 +178,8 @@ void processUserInput(int userSelection)
 
 int main()
 {
-    //printHello();
 
     std::vector<OrderBookEntry> orders;
-
-    //OrderBookEntry order1{10302,
-    //                0.0051824,
-    //                "2020/03/17 17:04:02.2234",
-    //                "BTC/USDT",
-    //                OrderBookType::bid};
 
     // call the constructor directly, instead of a variable of a constructor
     orders.push_back(OrderBookEntry{ 10302,
@@ -213,13 +194,7 @@ int main()
     "BTC/USDT",
     OrderBookType::ask });
 
-    //order1.price = 10000;
-    //order1.amount = 0.003183;
-    //order1.timestamp = "2020/03/17 17:04:02.2234";
-    //order1.product = "BTC/USDT";
-    //order1.ordertype = OrderBookType::bid;
 
-    //std::cout << "The price is: " << order1.price << std::endl << std::endl;
     std::cout << "The price is: " << orders[0].price << std::endl << std::endl;
     std::cout << "The price is: " << orders[1].price << std::endl << std::endl;
 
