@@ -1,9 +1,14 @@
+// specification file
+
 #pragma once
-class MerkelMain
+
+class MerkelMain // class definition
 {
 public:
 	MerkelMain();
-    void init();
+    /* call this to start the simulation */
+    void init(); // call this to start the simulation
+private:
     void printMenu();
     void printHelp(); // menu 1
     void exchangeStats(); // menu 2

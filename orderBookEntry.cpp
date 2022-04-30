@@ -1,4 +1,4 @@
-// implementation
+// implementation file
 
 #include "orderBookEntry.h"
 

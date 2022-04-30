@@ -1,14 +1,22 @@
+// implementation file
+
 #include "MerkelMain.h"
 #include <iostream>
 
-MerkelMain::MerkelMain()
+MerkelMain::MerkelMain() // constructor is for creating instance of object and ensure it is ready to be used
 {
 
 }
 
-void MerkelMain::init()
+void MerkelMain::init() // start the object running
 {
-
+    int input;
+    while (true)
+    {
+        printMenu();
+        input = userInput();
+        processUserInput(input);
+    }
 }
 
 /* print the user menu */
