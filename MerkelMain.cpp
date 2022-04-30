@@ -2,6 +2,8 @@
 
 #include "MerkelMain.h"
 #include <iostream>
+#include<vector>
+#include "orderBookEntry.h"
 
 MerkelMain::MerkelMain() // constructor is for creating instance of object and ensure it is ready to be used
 {
@@ -10,6 +12,7 @@ MerkelMain::MerkelMain() // constructor is for creating instance of object and e
 
 void MerkelMain::init() // start the object running
 {
+    loadOrderBook();
     int input;
     while (true)
     {
@@ -18,6 +21,28 @@ void MerkelMain::init() // start the object running
         processUserInput(input);
     }
 }
+
+void MerkelMain::loadOrderBook()
+{
+    orders.push_back(OrderBookEntry{ 10302,
+        0.0051824,
+        "2020/03/17 17:04:02.2234",
+        "BTC/USDT",
+        OrderBookType::bid });
+
+    orders.push_back(OrderBookEntry{ 12302,
+        0.0081824,
+        "2020/03/17 17:08:02.2234",
+        "BTC/USDT",
+        OrderBookType::ask });
+
+    orders.push_back(OrderBookEntry{ 15751,
+        0.021824,
+        "2020/03/17 17:18:02.2234",
+        "BTC/USDT",
+        OrderBookType::ask });
+}
+
 
 /* print the user menu */
 void MerkelMain::printMenu()
@@ -54,6 +79,7 @@ void MerkelMain::printHelp() // menu 1
 void MerkelMain::exchangeStats() // menu 2
 {
     std::cout << "Market is volatile." << std::endl << std::endl;
+    std::cout << "The order book contains: " << orders.size() << " entries." << std::endl << std::endl;
 }
 
 void MerkelMain::makeOffer() // menu 3

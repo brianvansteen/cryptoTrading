@@ -1,6 +1,8 @@
 // specification file
 
-#pragma once
+#pragma once // if included once, do not include again
+#include<vector>
+#include "orderBookEntry.h"
 
 class MerkelMain // class definition
 {
@@ -9,6 +11,7 @@ public:
     /* call this to start the simulation */
     void init(); // call this to start the simulation
 private:
+    void loadOrderBook();
     void printMenu();
     void printHelp(); // menu 1
     void exchangeStats(); // menu 2
@@ -18,6 +21,6 @@ private:
     void continueTrade(); // menu 6
     int userInput();
     void processUserInput(int userSelection);
-    
+    std::vector<OrderBookEntry> orders;
 };
 

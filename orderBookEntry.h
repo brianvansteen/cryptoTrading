@@ -1,6 +1,6 @@
 // specification file
 
-#pragma once
+#pragma once // if included once, do not include again
 #include<string>
 
 enum class OrderBookType { bid, ask };
