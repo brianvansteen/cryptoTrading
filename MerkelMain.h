@@ -1,6 +1,6 @@
 // specification file
 
-#pragma once // if included once, do not include again
+#pragma once // if below included once already, do not include again
 #include<vector>
 #include "orderBookEntry.h"
 
