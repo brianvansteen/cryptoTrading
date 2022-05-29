@@ -140,10 +140,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="cryptoMain.cpp" />
+    <ClCompile Include="csvReader.cpp" />
     <ClCompile Include="MerkelMain.cpp" />
     <ClCompile Include="orderBookEntry.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="csvReader.h" />
     <ClInclude Include="MerkelMain.h" />
     <ClInclude Include="orderBookEntry.h" />
   </ItemGroup>
