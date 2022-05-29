@@ -3,7 +3,7 @@
 #pragma once // if below included once already, do not include again
 #include<string>
 
-enum class OrderBookType { bid, ask };
+enum class OrderBookType { bid, ask, unknown };
 
 class OrderBookEntry // name of the class
 {
@@ -14,6 +14,8 @@ public:
         std::string _timestamp,
         std::string _product,
         OrderBookType _ordertype);
+
+    static OrderBookType stringToOrderBookType(std::string s);
 
     double price;
     double amount;
