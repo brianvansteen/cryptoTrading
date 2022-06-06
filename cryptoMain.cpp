@@ -14,6 +14,7 @@
 
 int main()
 {
+    // public functions
     MerkelMain app{}; // call the constructor, .h file
     app.init(); // comment from .h file
     return 0;
@@ -28,3 +29,6 @@ int main()
 //        processUserInput(userSelection);
 
 //    };
+
+
+

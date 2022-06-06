@@ -12,7 +12,7 @@ MerkelMain::MerkelMain() // constructor is for creating instance of object and e
 
 void MerkelMain::init() // start the object running
 {
-    loadOrderBook();
+    loadOrderBook(); // call function
     int input;
     while (true)
     {
@@ -24,6 +24,9 @@ void MerkelMain::init() // start the object running
 
 void MerkelMain::loadOrderBook()
 {
+    // std::vector<OrderBookEntry> orders;
+    // local scope only; set up in specification file for private object scope
+
     orders.push_back(OrderBookEntry{ 10302,
         0.0051824,
         "2020/03/17 17:04:02.2234",
@@ -80,6 +83,7 @@ void MerkelMain::exchangeStats() // menu 2
 {
     std::cout << "Market is volatile." << std::endl << std::endl;
     std::cout << "The order book contains: " << orders.size() << " entries." << std::endl << std::endl;
+    std::cout << "Order book contains: " <<std::endl;
 }
 
 void MerkelMain::makeOffer() // menu 3
