@@ -17,8 +17,8 @@ void MerkelMain::init() // start the object running
     while (true)
     {
         printMenu();
-        input = userInput();
-        processUserInput(input);
+        input = userInput(); // 1 - 7
+        processUserInput(input); // 1 - 7
     }
 }
 
