@@ -14,8 +14,8 @@
 
 int main()
 {
-    MerkelMain app{}; // call the constructor
-    app.init();
+    MerkelMain app{}; // call the constructor, .h file
+    app.init(); // comment from .h file
     return 0;
 }
 
