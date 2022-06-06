@@ -1,7 +1,9 @@
-// implementation file
+// implementation file, to implement the class / constructor
 
-#include "orderBookEntry.h"
+#include "orderBookEntry.h" // pulls in header file, to implement the class specified
 
+// the constructor, needs to be first 'namespaced' OrderBookEntry, since not in the namespace class
+// class::constructor function
 OrderBookEntry::OrderBookEntry(double _price,
     double _amount,
     std::string _timestamp,
@@ -9,10 +11,10 @@ OrderBookEntry::OrderBookEntry(double _price,
     OrderBookType _ordertype)
 
     :price(_price),
-    amount(_amount),
-    timestamp(_timestamp),
-    product(_product),
-    ordertype{ _ordertype }
+     amount(_amount),
+     timestamp(_timestamp),
+     product(_product),
+     ordertype{ _ordertype }
 {
 
 }

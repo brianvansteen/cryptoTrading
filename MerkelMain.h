@@ -7,9 +7,11 @@
 class MerkelMain // class definition
 {
 public:
-	MerkelMain();
+	MerkelMain(); // constructor
+
     /* call this to start the simulation */
     void init(); // call this to start the simulation
+
 private:
     void loadOrderBook();
     void printMenu();

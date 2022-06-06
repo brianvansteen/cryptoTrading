@@ -1,11 +1,11 @@
 // cryptoTrading.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
+// all other functions specified and implemented in the MerkelMain files (.h and .cpp)
 
 
 #include <iostream>
 #include <string>
-#include<algorithm>
-#include<vector>
+#include <algorithm>
+#include <vector>
 
 #include "orderBookEntry.h"
 #include "MerkelMain.h"
@@ -14,7 +14,7 @@
 
 int main()
 {
-    MerkelMain app{};
+    MerkelMain app{}; // call the constructor
     app.init();
     return 0;
 }

@@ -2,7 +2,7 @@
 
 #include "MerkelMain.h"
 #include <iostream>
-#include<vector>
+#include <vector>
 #include "orderBookEntry.h"
 
 MerkelMain::MerkelMain() // constructor is for creating instance of object and ensure it is ready to be used
