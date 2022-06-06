@@ -1,6 +1,6 @@
 // specification file
 
-#pragma once // if below included once already, do not include again
+#pragma once // if below included once already, do not include again; otherwise class called every time 'include' written
 #include<vector>
 #include "orderBookEntry.h"
 
@@ -23,6 +23,6 @@ private:
     void continueTrade(); // menu 6
     int userInput();
     void processUserInput(int userSelection);
-    std::vector<OrderBookEntry> orders;
+    std::vector<OrderBookEntry> orders; // private but object scope
 };
 
