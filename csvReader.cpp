@@ -1,28 +1,27 @@
-#include "csvReader.h"
+// implementation file for csvReader
 
+#include "csvReader.h"
 #include <iostream>
 
-CSVReader::CSVReader()
+CSVReader::CSVReader() // constructor
 {
-
-
 
 }
 
 
-std::vector<OrderBookEntry> CSVReader::readCSV(std::string csvFile)
+std::vector<OrderBookEntry> CSVReader::readCSV(std::string csvFile) // function implementation
 {
-	std::vector<OrderBookEntry> entries;
+	std::vector<OrderBookEntry> entries; // return vector of order book entries
 	return entries;
 }
 
 std::vector<std::string> CSVReader::tokenise(std::string csvLine, char separator)
 {
-	std::vector<std::string> tokens;
+	std::vector<std::string> tokens; // return vector of strings
 	return tokens;
 }
 
-OrderBookEntry CSVReader::stringsToOBE(std::vector<std::string> tokens)
+OrderBookEntry CSVReader::stringsToOBE(std::vector<std::string> tokens) // return single OBE
 {
 	double price, amount;
 	if (tokens.size() != 5)

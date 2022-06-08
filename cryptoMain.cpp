@@ -15,8 +15,11 @@
 int main()
 {
     // public functions
-    MerkelMain app{}; // call the constructor, .h file
-    app.init(); // comment from .h file
+    // MerkelMain app{}; // call the constructor, .h file
+    // app.init(); // comment from .h file
+    
+    CSVReader reader;
+
     return 0;
 }
 

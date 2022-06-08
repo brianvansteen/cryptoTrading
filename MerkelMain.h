@@ -1,7 +1,7 @@
 // specification file
 
-#pragma once // if below included once already, do not include again; otherwise class called every time 'include' written
-#include<vector>
+#pragma once // if below class included once already, do not include again; otherwise class called every time 'include' written
+#include <vector>
 #include "orderBookEntry.h"
 
 class MerkelMain // class definition
