@@ -15,10 +15,12 @@
 int main()
 {
     // public functions
-    // MerkelMain app{}; // call the constructor, .h file
-    // app.init(); // comment from .h file
+    MerkelMain app{}; // call the constructor function, .h file
+    app.init(); // call the init function; with comment from .h file
     
     CSVReader reader;
+
+    // CSVReader::readCSV("20200317.csv");
 
     return 0;
 }
