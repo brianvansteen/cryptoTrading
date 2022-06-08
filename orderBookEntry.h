@@ -1,6 +1,6 @@
 // header file is the specification file; not how class works, only how to use it
 
-#pragma once // if below included once already, do not include again
+#pragma once // if below class included once already, do not include again
 #include<string>
 
 enum class OrderBookType { bid, ask, unknown };
