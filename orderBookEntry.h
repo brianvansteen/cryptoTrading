@@ -15,7 +15,8 @@ public:
         std::string _product,
         OrderBookType _ordertype);
 
-    static OrderBookType stringToOrderBookType(std::string s);
+    // static - non-changing
+    static OrderBookType stringToOrderBookType(std::string s); // function converts from string to order book type, string as argument
 
     double price;
     double amount;

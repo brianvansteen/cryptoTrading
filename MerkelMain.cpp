@@ -4,6 +4,7 @@
 #include <iostream>
 #include <vector>
 #include "orderBookEntry.h"
+#include "csvReader.h"
 
 MerkelMain::MerkelMain() // constructor is for creating instance of object and ensure it is ready to be used
 {
@@ -24,26 +25,28 @@ void MerkelMain::init() // start the object running
 
 void MerkelMain::loadOrderBook()
 {
+    orders = CSVReader::readCSV("20200317.csv"); // orders from .h file
+    
     // std::vector<OrderBookEntry> orders;
     // local scope only; set up in specification file for private object scope
 
-    orders.push_back(OrderBookEntry{ 10302,
-        0.0051824,
-        "2020/03/17 17:04:02.2234",
-        "BTC/USDT",
-        OrderBookType::bid });
+    // orders.push_back(OrderBookEntry{ 10302,
+    //    0.0051824,
+    //    "2020/03/17 17:04:02.2234",
+    //    "BTC/USDT",
+    //    OrderBookType::bid });
 
-    orders.push_back(OrderBookEntry{ 12302,
-        0.0081824,
-        "2020/03/17 17:08:02.2234",
-        "BTC/USDT",
-        OrderBookType::ask });
+    // orders.push_back(OrderBookEntry{ 12302,
+    //    0.0081824,
+    //    "2020/03/17 17:08:02.2234",
+    //    "BTC/USDT",
+    //    OrderBookType::ask });
 
-    orders.push_back(OrderBookEntry{ 15751,
-        0.021824,
-        "2020/03/17 17:18:02.2234",
-        "BTC/USDT",
-        OrderBookType::ask });
+    // orders.push_back(OrderBookEntry{ 15751,
+    //    0.021824,
+    //    "2020/03/17 17:18:02.2234",
+    //   "BTC/USDT",
+    //    OrderBookType::ask });
 }
 
 
@@ -83,7 +86,22 @@ void MerkelMain::exchangeStats() // menu 2
 {
     std::cout << "Market is volatile." << std::endl << std::endl;
     std::cout << "The order book contains: " << orders.size() << " entries." << std::endl << std::endl;
-    std::cout << "Order book contains: " <<std::endl;
+    //std::cout << "Order book contains: " <<std::endl;
+    unsigned int bids = 0;
+    unsigned int asks = 0;
+    for (OrderBookEntry& e : orders) // interate over orders
+    {
+        if (e.ordertype == OrderBookType::ask)
+        {
+            asks++;
+        }
+        if (e.ordertype == OrderBookType::bid)
+        {
+            bids++;
+        }
+    }
+    std::cout << "OrderBook asks: " << asks << std::endl;
+    std::cout << "OrderBook bids: " << bids << std::endl << std::endl;
 }
 
 void MerkelMain::makeOffer() // menu 3
