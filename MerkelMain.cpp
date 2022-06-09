@@ -15,6 +15,7 @@ void MerkelMain::init() // start the object running
 {
     // loadOrderBook(); // call function
     int input;
+    currentTime = orderBook.getEarliestTime();
     while (true)
     {
         printMenu();
@@ -48,7 +49,9 @@ void MerkelMain::printMenu()
     // 7 exit
     std::cout << "7: exiting!" << std::endl << std::endl;
 
-    std::cout << "=======================================" << std::endl;
+    std::cout << "=======================================" << std::endl << std::endl;
+
+    std::cout << "Current time is: " << currentTime << std::endl << std::endl;
 }
 
 void MerkelMain::printHelp() // menu 1

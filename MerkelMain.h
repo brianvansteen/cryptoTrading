@@ -25,6 +25,8 @@ private:
     int userInput();
     void processUserInput(int userSelection);
 
+    std::string currentTime;
+
     OrderBook orderBook{ "20200317.csv" };
     //std::vector<OrderBookEntry> orders; // private but object scope
 };
