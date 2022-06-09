@@ -13,7 +13,7 @@ MerkelMain::MerkelMain() // constructor is for creating instance of object and e
 
 void MerkelMain::init() // start the object running
 {
-    loadOrderBook(); // call function
+    // loadOrderBook(); // call function
     int input;
     while (true)
     {
@@ -21,32 +21,6 @@ void MerkelMain::init() // start the object running
         input = userInput(); // 1 - 7
         processUserInput(input); // 1 - 7
     }
-}
-
-void MerkelMain::loadOrderBook()
-{
-    orders = CSVReader::readCSV("20200317.csv"); // orders from .h file
-    
-    // std::vector<OrderBookEntry> orders;
-    // local scope only; set up in specification file for private object scope
-
-    // orders.push_back(OrderBookEntry{ 10302,
-    //    0.0051824,
-    //    "2020/03/17 17:04:02.2234",
-    //    "BTC/USDT",
-    //    OrderBookType::bid });
-
-    // orders.push_back(OrderBookEntry{ 12302,
-    //    0.0081824,
-    //    "2020/03/17 17:08:02.2234",
-    //    "BTC/USDT",
-    //    OrderBookType::ask });
-
-    // orders.push_back(OrderBookEntry{ 15751,
-    //    0.021824,
-    //    "2020/03/17 17:18:02.2234",
-    //   "BTC/USDT",
-    //    OrderBookType::ask });
 }
 
 
@@ -84,24 +58,36 @@ void MerkelMain::printHelp() // menu 1
 
 void MerkelMain::exchangeStats() // menu 2
 {
-    std::cout << "Market is volatile." << std::endl << std::endl;
-    std::cout << "The order book contains: " << orders.size() << " entries." << std::endl << std::endl;
-    //std::cout << "Order book contains: " <<std::endl;
-    unsigned int bids = 0;
-    unsigned int asks = 0;
-    for (OrderBookEntry& e : orders) // interate over orders
+    for (std::string const& p : orderBook.getKnownProducts())
     {
-        if (e.ordertype == OrderBookType::ask)
-        {
-            asks++;
-        }
-        if (e.ordertype == OrderBookType::bid)
-        {
-            bids++;
-        }
+        std::cout << "Product: " << p << std::endl;
+        
+        std::vector<OrderBookEntry> entries = orderBook.getOrders(OrderBookType::ask, p, "2020/03/17 17:01:24.884492");
+
+        std::cout << "Asks seen: " << entries.size() << std::endl;
+
+        std::cout << "Max ask: " << OrderBook::getHighPrice(entries) << std::endl;
+        std::cout << "Min ask: " << OrderBook::getLowPrice(entries) << std::endl;
     }
-    std::cout << "OrderBook asks: " << asks << std::endl;
-    std::cout << "OrderBook bids: " << bids << std::endl << std::endl;
+
+    //std::cout << "Market is volatile." << std::endl << std::endl;
+    //std::cout << "The order book contains: " << orders.size() << " entries." << std::endl << std::endl;
+    ////std::cout << "Order book contains: " <<std::endl;
+    //unsigned int bids = 0;
+    //unsigned int asks = 0;
+    //for (OrderBookEntry& e : orders) // interate over orders
+    //{
+    //    if (e.ordertype == OrderBookType::ask)
+    //    {
+    //        asks++;
+    //    }
+    //    if (e.ordertype == OrderBookType::bid)
+    //    {
+    //        bids++;
+    //    }
+    //}
+    //std::cout << "OrderBook asks: " << asks << std::endl;
+    //std::cout << "OrderBook bids: " << bids << std::endl << std::endl;
 }
 
 void MerkelMain::makeOffer() // menu 3

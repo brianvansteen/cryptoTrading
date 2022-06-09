@@ -142,11 +142,13 @@
     <ClCompile Include="cryptoMain.cpp" />
     <ClCompile Include="csvReader.cpp" />
     <ClCompile Include="MerkelMain.cpp" />
+    <ClCompile Include="OrderBook.cpp" />
     <ClCompile Include="orderBookEntry.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="csvReader.h" />
     <ClInclude Include="MerkelMain.h" />
+    <ClInclude Include="OrderBook.h" />
     <ClInclude Include="orderBookEntry.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
