@@ -29,7 +29,7 @@ std::vector<OrderBookEntry> CSVReader::readCSV(std::string csvFilename) // funct
 			}
 		} // end of while
 	}
-	std::cout << "CSVReader:readCSV read " << entries.size() << "entries" << std::endl << std::endl;
+	std::cout << "CSVReader:readCSV read " << entries.size() << " entries" << std::endl << std::endl;
 	return entries;
 }
 
