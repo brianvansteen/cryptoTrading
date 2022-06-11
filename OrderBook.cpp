@@ -13,13 +13,14 @@ OrderBook::OrderBook(std::string filename) // constructor reading csv data file
 
 std::vector<std::string> OrderBook::getKnownProducts() // return vector of all known products in the dataset
 {
-	std::vector<std::string> products;
+	std::vector<std::string> products; // define vector
 
 	std::map<std::string, bool> prodMap; // dictionary 'prodMap'
  
-	for (OrderBookEntry& e : orders) // from orders above
+	for (OrderBookEntry& e : orders) // from orders above, using OrderBookEntry class
 	{
-		prodMap[e.product] = true; // key is product; value is 'true'
+		// prodMap[e.timestamp] = true; // key is timestamp from OBE class; value is 'true'
+		prodMap[e.product] = true; // key is product from OBE class; value is 'true'
 	}
 
 	// now flatten the map to a vector of strings
@@ -28,25 +29,25 @@ std::vector<std::string> OrderBook::getKnownProducts() // return vector of all k
 		products.push_back(e.first); // first is the key, i.e. product
 	}
 
-	return products;
+	return products; // function called from MerkelMain 'exchangestats' menu #2
 }
 
-// return vector of Orders according to the sent filters
+// return vector of Orders according to the sent filters of type (bid or ask), product and timestamp (i.e. 'currentTime)
 std::vector<OrderBookEntry> OrderBook::getOrders(OrderBookType type, std::string product, std::string timestamp)
 {
 	std::vector<OrderBookEntry> orders_sub;
 
 	for (OrderBookEntry& e : orders)
 	{
-		if (e.ordertype == type &&
-			e.product == product &&
-			e.timestamp == timestamp)
+		if (e.ordertype == type && // bid or ask
+			e.product == product && // for the product available
+			e.timestamp == timestamp) // for specific time stamp
 		{
 			orders_sub.push_back(e);
 		}
 	}
 
-	return orders_sub;
+	return orders_sub; // function called from MerkelMain 'exchangestats' menu #2
 }
 
 double OrderBook::getHighPrice(std::vector<OrderBookEntry>& orders)
@@ -69,9 +70,10 @@ double OrderBook::getLowPrice(std::vector<OrderBookEntry>& orders)
 	return min;
 }
 
+
 std::string OrderBook::getEarliestTime()
 {
-	return orders[0].timestamp;
+	return orders[0].timestamp; // timestamp of first order
 }
 
 std::string OrderBook::getNextTime(std::string timestamp)
@@ -87,7 +89,7 @@ std::string OrderBook::getNextTime(std::string timestamp)
 	}
 	if (next_timestamp == "")
 	{
-		next_timestamp = orders[0].timestamp;
+		next_timestamp = orders[0].timestamp; // timestamp of first order
 	}
-	return next_timestamp;
+	return next_timestamp; // used for 'currentTime'
 };

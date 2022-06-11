@@ -16,7 +16,7 @@ public:
         OrderBookType _ordertype);
 
     // static - non-changing
-    static OrderBookType stringToOrderBookType(std::string s); // function converts from string to order book type, string as argument
+    static OrderBookType stringToOrderBookType(std::string s); // function converts from string to OrderBookType enum, string as argument
 
     double price;
     double amount;

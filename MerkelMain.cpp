@@ -63,7 +63,7 @@ void MerkelMain::exchangeStats() // menu 2
 {
     for (std::string const& p : orderBook.getKnownProducts())
     {
-        std::cout << "Product: " << p << std::endl;
+        std::cout << "Product: " << p << std::endl; // what are the products; timestamps also works
         
         // std::vector<OrderBookEntry> entries = orderBook.getOrders(OrderBookType::ask, p, "2020/03/17 17:01:24.884492");
         std::vector<OrderBookEntry> entries = orderBook.getOrders(OrderBookType::ask, p, currentTime);
@@ -72,6 +72,8 @@ void MerkelMain::exchangeStats() // menu 2
 
         std::cout << "Max ask: " << OrderBook::getHighPrice(entries) << std::endl;
         std::cout << "Min ask: " << OrderBook::getLowPrice(entries) << std::endl;
+        std::cout << "Delta is: " << OrderBook::getLowPrice(entries) / OrderBook::getHighPrice(entries) << std::endl;
+        std::cout << std::endl;
     }
 
     //std::cout << "Market is volatile." << std::endl << std::endl;
@@ -112,7 +114,7 @@ void MerkelMain::printWallet() // menu 5
 void MerkelMain::continueTrade() // menu 6
 {
     std::cout << "Going to next time frame." << std::endl << std::endl;
-    currentTime = orderBook.getNextTime(currentTime);
+    currentTime = orderBook.getNextTime(currentTime); // update time
 }
 
 int MerkelMain::userInput()
