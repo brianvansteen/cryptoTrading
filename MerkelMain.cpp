@@ -97,9 +97,33 @@ void MerkelMain::exchangeStats() // menu 2
     //std::cout << "OrderBook bids: " << bids << std::endl << std::endl;
 }
 
-void MerkelMain::makeOffer() // menu 3
+void MerkelMain::makeAsk() // menu 3
 {
-    std::cout << "Make an offer." << std::endl << std::endl;
+    std::cout << "Make an offer (ask)." << std::endl;
+    std::cout << "Enter product, price and amount." << std::endl;
+    std::cout << "E.g. ETH/BTC,200,0.5 - with no spaces" << std::endl;
+    std::string input;
+    //std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    std::getline(std::cin, input);
+
+    std::vector<std::string> tokens = CSVReader::tokenise(input, ',');
+    if (tokens.size() != 3)
+    {
+        std::cout << "Bad input! Please re-enter in this format with no spaces: ETH/BTC,200,0.5" << std::endl;
+    }
+    else
+    {
+        try {
+            OrderBookEntry obe = CSVReader::stringsToOBE(tokens[1], tokens[2], currentTime, tokens[0], OrderBookType::ask);
+        }
+        catch (const std::exception & e)
+        {
+            std::cout << "MerkelMain::makeAsk Bad User Input" << std::endl;
+        }
+    }
+
+    std::cout << "You entered an offer of: " << input << std::endl << std::endl;
+
 }
 
 void MerkelMain::makeBid() // menu 4
@@ -120,9 +144,18 @@ void MerkelMain::continueTrade() // menu 6
 
 int MerkelMain::userInput()
 {
-    int userSelection;
+    int userSelection = 0;
+    std::string line;
     std::cout << "Make a selection from the options:" << std::endl;
-    std::cin >> userSelection;
+    std::getline(std::cin, line);
+    try {
+        userSelection = std::stoi(line);
+    }
+    catch (const std::exception& e)
+    {
+        std::cout << "Please enter a valid number, not " << line << "!" << std::endl;
+    }
+    // std::cin >> userSelection;
     std::cout << "You selected: " << userSelection << std::endl;
     return userSelection;
 }
@@ -143,7 +176,7 @@ void MerkelMain::processUserInput(int userSelection)
     }
     else if (userSelection == 3)
     {
-        makeOffer();
+        makeAsk();
     }
     else if (userSelection == 4)
     {

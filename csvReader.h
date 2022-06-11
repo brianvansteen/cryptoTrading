@@ -12,9 +12,18 @@ class CSVReader // new class
 		CSVReader();
 		// stateless function, so can be static, since no state needed for constructor
 		static std::vector<OrderBookEntry> readCSV(std::string csvFile); // takes as argument csvFile; return vector of OBE objects
+		static std::vector<std::string> tokenise(std::string csvLine, char separator); // tokenise function
+		
+		// function overloading
+		static OrderBookEntry stringsToOBE(std::string price,
+			std::string amount,
+			std::string timestamp,
+			std::string product,
+			OrderBookType OrderBookType);
+
 
 	private:
-		static std::vector<std::string> tokenise(std::string csvLine, char separator); // tokenise function
+		// function overloading
 		static OrderBookEntry stringsToOBE(std::vector<std::string> strings); // vector of strings from tokenise and convert to OBE
 };
 
