@@ -15,17 +15,17 @@ std::vector<std::string> OrderBook::getKnownProducts() // return vector of all k
 {
 	std::vector<std::string> products;
 
-	std::map<std::string, bool> prodMap;
+	std::map<std::string, bool> prodMap; // dictionary 'prodMap'
  
-	for (OrderBookEntry& e : orders)
+	for (OrderBookEntry& e : orders) // from orders above
 	{
-		prodMap[e.product] = true;
+		prodMap[e.product] = true; // key is product; value is 'true'
 	}
 
 	// now flatten the map to a vector of strings
 	for (auto const& e : prodMap) // variable type is 'auto'
 	{
-		products.push_back(e.first); // first is the key
+		products.push_back(e.first); // first is the key, i.e. product
 	}
 
 	return products;
