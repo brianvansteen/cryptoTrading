@@ -20,8 +20,8 @@ std::vector<OrderBookEntry> CSVReader::readCSV(std::string csvFilename) // funct
 		while (std::getline(csvFile, line))
 		{
 			try {
-				OrderBookEntry obe = stringsToOBE(tokenise(line, ','));
-				entries.push_back(obe);
+				OrderBookEntry obe = stringsToOBE(tokenise(line, ',')); // stringToOBE and tokenise function defined below
+				entries.push_back(obe); // obe defined below
 			}
 			catch (const std::exception& e)
 			{
