@@ -19,6 +19,7 @@ OrderBookEntry::OrderBookEntry(double _price,
 
 }
 
+// convert string to OrderBookType enum
 OrderBookType OrderBookEntry::stringToOrderBookType(std::string s)
 {
     if (s == "ask")
