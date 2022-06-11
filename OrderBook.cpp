@@ -70,6 +70,23 @@ double OrderBook::getLowPrice(std::vector<OrderBookEntry>& orders)
 	return min;
 }
 
+double OrderBook::getDelta(std::vector<OrderBookEntry>& orders)
+{
+	double min = orders[0].price;
+	for (OrderBookEntry& e : orders)
+	{
+		if (e.price < min)min = e.price;
+	}
+
+	double max = orders[0].price;
+	for (OrderBookEntry& e : orders)
+	{
+		if (e.price > max)max = e.price;
+	}
+
+	return min / max;
+}
+
 
 std::string OrderBook::getEarliestTime()
 {
