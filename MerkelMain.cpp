@@ -65,7 +65,8 @@ void MerkelMain::exchangeStats() // menu 2
     {
         std::cout << "Product: " << p << std::endl;
         
-        std::vector<OrderBookEntry> entries = orderBook.getOrders(OrderBookType::ask, p, "2020/03/17 17:01:24.884492");
+        // std::vector<OrderBookEntry> entries = orderBook.getOrders(OrderBookType::ask, p, "2020/03/17 17:01:24.884492");
+        std::vector<OrderBookEntry> entries = orderBook.getOrders(OrderBookType::ask, p, currentTime);
 
         std::cout << "Asks seen: " << entries.size() << std::endl;
 
@@ -111,6 +112,7 @@ void MerkelMain::printWallet() // menu 5
 void MerkelMain::continueTrade() // menu 6
 {
     std::cout << "Going to next time frame." << std::endl << std::endl;
+    currentTime = orderBook.getNextTime(currentTime);
 }
 
 int MerkelMain::userInput()
