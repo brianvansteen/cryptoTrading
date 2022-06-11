@@ -72,7 +72,8 @@ void MerkelMain::exchangeStats() // menu 2
 
         std::cout << "Max ask: " << OrderBook::getHighPrice(entries) << std::endl;
         std::cout << "Min ask: " << OrderBook::getLowPrice(entries) << std::endl;
-        std::cout << "Delta is: " << OrderBook::getLowPrice(entries) / OrderBook::getHighPrice(entries) << std::endl;
+        std::cout << "Delta is: " << OrderBook::getDelta(entries) << std::endl;
+        // std::cout << "Delta is: " << OrderBook::getLowPrice(entries) / OrderBook::getHighPrice(entries) << std::endl;
         std::cout << std::endl;
     }
 
