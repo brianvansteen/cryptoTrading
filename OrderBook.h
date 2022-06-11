@@ -15,7 +15,12 @@ public:
 	// return vector of Orders according to the sent filters
 	std::vector<OrderBookEntry> getOrders(OrderBookType type, std::string product, std::string timestamp);
 
+	// returns first time in order book
 	std::string getEarliestTime();
+
+	// returns next time after the sent time in the order book
+	// at the end of the time stamps, it wraps around to the start
+	std::string getNextTime(std::string timestamp);
 
 	static double getHighPrice(std::vector<OrderBookEntry>& orders);
 	static double getLowPrice(std::vector<OrderBookEntry>& orders);
