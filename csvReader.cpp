@@ -70,8 +70,8 @@ OrderBookEntry CSVReader::stringsToOBE(std::vector<std::string> tokens) // retur
 	}
 	catch (const std::exception& e) // always use const for exceptions
 	{
-		std::cout << "Bad float! " << tokens[3] << std::endl;
-		std::cout << "Bad float! " << tokens[4] << std::endl;
+		std::cout << "CSVReader::stringsToOBE Bad float! " << tokens[3] << std::endl;
+		std::cout << "CSVReader::stringsToOBE Bad float! " << tokens[4] << std::endl;
 		throw;
 	}
 
@@ -81,5 +81,32 @@ OrderBookEntry CSVReader::stringsToOBE(std::vector<std::string> tokens) // retur
 						tokens[0], // timestamp
 						tokens[1], // product
 						OrderBookEntry::stringToOrderBookType(tokens[2])}; // call function to take output from tokenise string an convert to order book entry
+	return obe;
+}
+
+OrderBookEntry CSVReader::stringsToOBE(std::string priceString,
+	std::string amountString,
+	std::string timestamp,
+	std::string product,
+	OrderBookType orderType)
+{
+	double price, amount;
+	try {
+		price = std::stod(priceString); // stod is a static function; stateless; called once then removed
+		amount = std::stod(amountString);
+	}
+	catch (const std::exception& e) // always use const for exceptions
+	{
+		std::cout << "CSVReader::stringsToOBE Bad float! " << priceString << std::endl;
+		std::cout << "CSVReader::stringsToOBE Bad float! " << amountString << std::endl;
+		throw;
+	}
+
+	// from vector of strings from call to tokenise, convert string to appropriate data to send to OBE constructor
+	OrderBookEntry obe{ price,
+						amount,
+						timestamp, // timestamp
+						product, // product
+						orderType };
 	return obe;
 }
