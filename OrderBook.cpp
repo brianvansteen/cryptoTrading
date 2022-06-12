@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <algorithm>
 
 OrderBook::OrderBook(std::string filename) // constructor reading csv data file
 {
@@ -109,4 +110,55 @@ std::string OrderBook::getNextTime(std::string timestamp)
 		next_timestamp = orders[0].timestamp; // timestamp of first order
 	}
 	return next_timestamp; // used for 'currentTime'
-};
+}
+
+void OrderBook::insertOrder(OrderBookEntry& order)
+{
+	orders.push_back(order); // add order to end of vector
+	std::sort(orders.begin(), orders.end(), OrderBookEntry::compareByTimestamp); // after adding to the end, re-sort whole vector
+}
+
+std::vector<OrderBookEntry> OrderBook::matchAsksToBids(std::string product, std::string timestamp) // match specific product in specific timestamp
+{
+	std::vector<OrderBookEntry> asks = getOrders(OrderBookType::ask, product, timestamp); // get vector of asks from orders
+	std::vector<OrderBookEntry> bids = getOrders(OrderBookType::bid, product, timestamp); // get vector of bids from orders
+
+	std::vector<OrderBookEntry> sales;
+
+	std::sort(asks.begin(), asks.end(), OrderBookEntry::compareByPriceA); // sort asks from lowest
+	std::sort(bids.begin(), bids.end(), OrderBookEntry::compareByPriceD); // sort bids from highest
+
+	for (OrderBookEntry& ask : asks) // iterate over asks first, from lowest
+	{
+		for (OrderBookEntry& bid : bids) // iterate over bids second, from highest
+		{
+			if (bid.price >= ask.price)
+			{
+				OrderBookEntry sale{ ask.price, 0, timestamp, product, OrderBookType::sale };
+
+					if (bid.amount == ask.amount)
+					{
+						sale.amount = ask.amount;
+						sales.push_back(sale);
+						bid.amount = 0; // bid order completely satisfied
+						break; // move to next bid and ask
+					}
+					if (bid.amount > ask.amount)
+					{
+						sale.amount = ask.amount; // only the amout of the ask offer
+						sales.push_back(sale);
+						bid.amount = bid.amount - ask.amount;
+						break; // move to next ask, attempt to fill bid
+					}
+					if (bid.amount < ask.amount)
+					{
+						sale.amount = bid.amount;
+						sales.push_back(sale);
+						ask.amount = ask.amount - bid.amount;
+						continue; // go to next bid, attempt to fill ask
+					}
+			}
+		}
+	}
+	return sales;
+}
