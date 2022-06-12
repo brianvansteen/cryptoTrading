@@ -15,9 +15,15 @@
 int main()
 {
     // public functions
-    MerkelMain app{}; // call the constructor function, .h file
-    app.init(); // call the init function; with comment from .h file
-    
+    // MerkelMain app{}; // call the constructor function, .h file
+    // app.init(); // call the init function; with comment from .h file
+
+    Wallet wallet;
+    wallet.insertCurrency("BTC", 10);
+    std::cout << "Does the wallet contain BTC: " << wallet.containsCurrency("BTC", 10) << std::endl;
+    std::cout << wallet.toString() << std::endl;
+   
+
     CSVReader reader;
 
     // CSVReader::readCSV("20200317.csv");
