@@ -115,6 +115,7 @@ void MerkelMain::makeAsk() // menu 3
     {
         try {
             OrderBookEntry obe = CSVReader::stringsToOBE(tokens[1], tokens[2], currentTime, tokens[0], OrderBookType::ask);
+            orderBook.insertOrder(obe);
         }
         catch (const std::exception & e)
         {
@@ -139,6 +140,12 @@ void MerkelMain::printWallet() // menu 5
 void MerkelMain::continueTrade() // menu 6
 {
     std::cout << "Going to next time frame." << std::endl << std::endl;
+    std::vector<OrderBookEntry> sales = orderBook.matchAsksToBids("ETH/BTC", currentTime); // vector of OBEs sales
+    std::cout << "Sales: " << sales.size() << std::endl;
+    for (OrderBookEntry& sale : sales)
+    {
+        std::cout << "Sales price: " << sale.price << ", sales amount: " << sale.amount << std::endl;
+    }
     currentTime = orderBook.getNextTime(currentTime); // update time
 }
 

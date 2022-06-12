@@ -22,6 +22,10 @@ public:
 	// at the end of the time stamps, it wraps around to the start
 	std::string getNextTime(std::string timestamp);
 
+	void insertOrder(OrderBookEntry& order); // function to insert order
+
+	std::vector<OrderBookEntry> matchAsksToBids(std::string product, std::string timestamp); // return a vector of order book entries; use OBE to generate sales
+
 	static double getHighPrice(std::vector<OrderBookEntry>& orders);
 	static double getLowPrice(std::vector<OrderBookEntry>& orders);
 	static double getDelta(std::vector<OrderBookEntry>& orders);
