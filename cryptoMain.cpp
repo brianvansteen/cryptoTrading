@@ -20,6 +20,10 @@ int main()
 
     Wallet wallet;
     wallet.insertCurrency("BTC", 10);
+    wallet.insertCurrency("USDT", 500);
+    std::cout << wallet.toString() << std::endl;
+    wallet.removeCurrency("USDT", 32);
+    std::cout << wallet.toString() << std::endl;
     std::cout << "Does the wallet contain BTC: " << wallet.containsCurrency("BTC", 10) << std::endl;
     std::cout << wallet.toString() << std::endl;
    
