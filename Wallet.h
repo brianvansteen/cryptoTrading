@@ -1,4 +1,6 @@
 #pragma once
+
+#include "OrderBookEntry.h"
 #include <string>
 #include <map>
 
@@ -10,6 +12,8 @@ public:
 	bool removeCurrency(std::string type, double amount); // remove currency from wallet
 
 	bool containsCurrency(std::string type, double amount); // check currency ballance
+
+	bool canFulfillOrder(OrderBookEntry order); // check wallet if sufficient currency to fulfill order
 
 	std::string toString(); // generate string representation of what is in the wallet
 
