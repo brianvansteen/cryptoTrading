@@ -118,7 +118,15 @@ void MerkelMain::makeAsk() // menu 3
     {
         try {
             OrderBookEntry obe = CSVReader::stringsToOBE(tokens[1], tokens[2], currentTime, tokens[0], OrderBookType::ask);
-            orderBook.insertOrder(obe);
+            if (wallet.canFulfillOrder(obe))
+            {
+                std::cout << "You have funds to complete the ask transaction!" << std::endl;
+                orderBook.insertOrder(obe);
+            }
+            else
+            {
+                std::cout<< "You do not have sufficient funds to complete the ask transaction!" << std::endl;
+            }
         }
         catch (const std::exception & e)
         {
@@ -133,6 +141,37 @@ void MerkelMain::makeAsk() // menu 3
 void MerkelMain::makeBid() // menu 4
 {
     std::cout << "Make a bid." << std::endl << std::endl;
+    std::cout << "Enter product, price and amount." << std::endl;
+    std::cout << "E.g. ETH/BTC,200,0.5 - with no spaces" << std::endl;
+    std::string input;
+    std::getline(std::cin, input);
+
+    std::vector<std::string> tokens = CSVReader::tokenise(input, ',');
+    if (tokens.size() != 3)
+    {
+        std::cout << "Bad input! Please re-enter in this format with no spaces: ETH/BTC,200,0.5" << std::endl;
+    }
+    else
+    {
+        try {
+            OrderBookEntry obe = CSVReader::stringsToOBE(tokens[1], tokens[2], currentTime, tokens[0], OrderBookType::bid);
+            if (wallet.canFulfillOrder(obe))
+            {
+                std::cout << "You have funds to complete the ask transaction!" << std::endl;
+                orderBook.insertOrder(obe);
+            }
+            else
+            {
+                std::cout << "You do not have sufficient funds to complete the ask transaction!" << std::endl;
+            }
+        }
+        catch (const std::exception& e)
+        {
+            std::cout << "MerkelMain::makeBid Bad User Input" << std::endl;
+        }
+    }
+
+    std::cout << "You entered an offer of: " << input << std::endl << std::endl;
 }
 
 void MerkelMain::printWallet() // menu 5
