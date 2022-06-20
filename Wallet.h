@@ -15,6 +15,8 @@ public:
 
 	bool canFulfillOrder(OrderBookEntry order); // check wallet if sufficient currency to fulfill order
 
+	void processSale(OrderBookEntry& sale); // update the contents of the wallet, assuming the order was make by the wallet owner
+
 	std::string toString(); // generate string representation of what is in the wallet
 
 private:
