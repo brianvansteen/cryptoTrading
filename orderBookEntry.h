@@ -3,7 +3,7 @@
 #pragma once // if below class included once already, do not include again
 #include<string>
 
-enum class OrderBookType { bid, ask, unknown, sale };
+enum class OrderBookType { bid, ask, unknown, asksale, bidsale };
 
 class OrderBookEntry // namespace of the class OrderBookEntry
 {
@@ -13,7 +13,8 @@ public:
         double _amount,
         std::string _timestamp,
         std::string _product,
-        OrderBookType _ordertype);
+        OrderBookType _ordertype,
+        std::string _username = "dataset"); // default for all OBE objects, when no username
 
     // static - non-changing
     static OrderBookType stringToOrderBookType(std::string s); // function converts from string to OrderBookType enum, string as argument
@@ -39,4 +40,6 @@ public:
     std::string timestamp;
     std::string product;
     OrderBookType ordertype;
+
+    std::string username;
 };
