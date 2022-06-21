@@ -32,7 +32,7 @@ void MerkelMain::init() // start the object running
 void MerkelMain::printMenu()
 {
     // 1 print help
-    std::cout << "1: Print help:" << std::endl;
+    std::cout << "1: Print help commands:" << std::endl;
 
     // 2 print exchange statistics
     std::cout << "2: Print exchange statistics:" << std::endl;
@@ -50,7 +50,7 @@ void MerkelMain::printMenu()
     std::cout << "6: continue in timeline:" << std::endl;
 
     // 7 exit
-    std::cout << "7: exiting!" << std::endl << std::endl;
+    std::cout << "7: Exit the trading platform!" << std::endl << std::endl;
 
     std::cout << "=======================================" << std::endl << std::endl;
 
@@ -59,7 +59,27 @@ void MerkelMain::printMenu()
 
 void MerkelMain::printHelp() // menu 1
 {
-    std::cout << "This is a trading platform." << std::endl << std::endl;
+    std::cout << "MerkleRex and Advisorbot are a trading platform." << std::endl << std::endl;
+    std::cout << "The help commands are as follows below." << std::endl<<std::endl;
+    std::cout << "If you want help for a specific command, enter as follow:" << std::endl;
+    std::cout << "  help <cmd>" << std::endl <<std::endl;
+    std::cout << "- prod:" << std::endl;
+    std::cout <<"   print a list of currency trading products." << std::endl<<std::endl;
+    std::cout << "- min:"<<std::endl;
+    std::cout << "  find the minimum bid or minimum ask, for a specific product in the current time period." << std::endl << std::endl;
+    std::cout << "- max:" << std::endl;
+    std::cout << "  find the minimum bid or minimum ask, for a specific product in the current time period." << std::endl << std::endl;
+    std::cout << "- avg:" << std::endl;
+    std::cout << "  compute the average bid or ask, for a specific product, for a specific number of time periods." << std::endl << std::endl;
+    std::cout << "- predict:" << std::endl;
+    std::cout << "  predict the maximum or minimum bid or ask, for a specific product, in the next time period." << std::endl << std::endl;
+    std::cout << "- my own:" << std::endl;
+    std::cout << "  cccccc....... " <<std::endl <<std::endl;
+    std::cout << "- time:" << std::endl;
+    std::cout << "  print the current time period." << std::endl <<std::endl;
+    std::cout << "- step:" << std::endl;
+    std::cout << "  complete the current time period, and move to the next time period." << std::endl<<std::endl;
+    std::cout << "When implementing a help command, please make sure to enter all required parameters!" << std::endl << std::endl;
 }
 
 void MerkelMain::exchangeStats() // menu 2
@@ -207,54 +227,68 @@ void MerkelMain::continueTrade() // menu 6
 
 int MerkelMain::userInput()
 {
-    int userSelection = 0;
+    int userInput = 0;
     std::string line;
     std::cout << "Make a selection from the options:" << std::endl;
     std::getline(std::cin, line);
+    if (line.find("help"))
+    {
+        std::cout << "HELP found!" << std::endl;
+    }
     try {
-        userSelection = std::stoi(line);
+        userInput = std::stoi(line);
     }
     catch (const std::exception& e)
     {
         std::cout << "Please enter a valid number, not " << line << "!" << std::endl;
     }
-    // std::cin >> userSelection;
-    std::cout << "You selected: " << userSelection << std::endl;
-    return userSelection;
+    // std::cin >> userInput;
+    std::cout << "You selected: " << userInput << std::endl <<std::endl;
+    return userInput;
 }
 
-void MerkelMain::processUserInput(int userSelection)
+void MerkelMain::processUserInput(int userInput)
 {
-    if (userSelection < 1) // not valid selection
+    if (userInput < 1) // not valid selection
     {
         std::cout << "This is not a valid selection. Please select a value from the menu." << std::endl;
     }
-    else if (userSelection == 1)
+    else if (userInput == 1)
     {
         printHelp();
     }
-    else if (userSelection == 2)
+    else if (userInput == 2)
     {
         exchangeStats();
     }
-    else if (userSelection == 3)
+    else if (userInput == 3)
     {
         makeAsk();
     }
-    else if (userSelection == 4)
+    else if (userInput == 4)
     {
         makeBid();
     }
-    else if (userSelection == 5)
+    else if (userInput == 5)
     {
         printWallet();
     }
-    else if (userSelection == 6)
+    else if (userInput == 6)
     {
         continueTrade();
     }
-    else if (userSelection > 7) // not valid selection
+    else if (userInput == 7)
+    {
+        std::cout << "Exiting the program!" << std::endl << std::endl;
+        exitSession();
+    }
+    else if (userInput > 7)
     {
         std::cout << "This is not a valid selection. Please select a value from the menu." << std::endl << std::endl;
     }
+}
+
+int MerkelMain::exitSession()
+{
+    exit(0);
 }

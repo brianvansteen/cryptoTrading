@@ -28,6 +28,8 @@ private:
 
     std::string currentTime;
 
+    int exitSession();
+
     OrderBook orderBook{ "20200317.csv" };
     //std::vector<OrderBookEntry> orders; // private but object scope
 
